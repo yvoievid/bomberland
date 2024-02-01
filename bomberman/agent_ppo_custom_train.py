@@ -12,7 +12,7 @@ from components.environment.gym import Gym, GymEnv
 from components.environment.mocks import MOCK_15x15_INITIAL_OBSERVATION
 from components.models.ppo import PPO
 from components.action import make_action
-from components.reward import calculate_reward
+from custom_components.reward import calculate_reward
 from components.state import (
     action_dimensions, 
     state_dimensions, 
@@ -33,10 +33,10 @@ Hyperparameters
 EPOCHS = 10
 STEPS = 1000
 BATCH_SIZE = 128
-LEARNING_RATE_ACTOR = 0.0003
+LEARNING_RATE_ACTOR = 0.0001
 LEARNING_RATE_CRITIC = 0.001
 K_EPOCHS = 80 # update policy for K epochs in one PPO update
-GAMMA = 0.99
+GAMMA = 0.80
 TAU = 0.005
 EPS_CLIP = 0.2 # clip parameter for PPO
 ACTION_STD = 0.6

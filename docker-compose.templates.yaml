@@ -15,6 +15,20 @@ services:
         volumes:
             - ./bomberman:/app
 
+    agent-ppo-custom-train:
+        build:
+            context: bomberman
+            dockerfile: Dockerfile.ppo_custom_train
+        volumes:
+            - ./bomberman:/app
+
+    agent-ppo-custom-test:
+        build:
+            context: bomberman
+            dockerfile: Dockerfile.ppo_custom_test
+        volumes:
+            - ./bomberman:/app
+
     agent-dqn-train:
         build:
             context: bomberman

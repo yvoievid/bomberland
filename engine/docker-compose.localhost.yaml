@@ -13,14 +13,21 @@ services:
         ports:
             - 6969:6969
         environment:
+            - SHUTDOWN_ON_GAME_END_ENABLED=0
             - TELEMETRY_ENABLED=1
-            - TRAINING_MODE_ENABLED=1
+            - TRAINING_MODE_ENABLED=0
             - PORT=6969
             - WORLD_SEED=1234
             - PRNG_SEED=1234
             - ENVIRONMENT=production
             - BUILD=production
 
+        networks:
+            - bomberland-engine-network
+
 volumes:
     bomberland-engine_node_modules:
     bomberland-engine_output:
+
+networks:
+    bomberland-engine-network:
