@@ -15,17 +15,17 @@ services:
         volumes:
             - ./bomberman:/app
 
-    agent-ppo-custom-train:
+    agent-yurii-train:
         build:
             context: bomberman
-            dockerfile: Dockerfile.ppo_custom_train
+            dockerfile: yurii_model/Dockerfile.ppo_yurii_train
         volumes:
-            - ./bomberman:/app
+            - ./bomberman:/app/
 
-    agent-ppo-custom-test:
+    agent-yurii-test:
         build:
             context: bomberman
-            dockerfile: Dockerfile.ppo_custom_test
+            dockerfile: yurii_model/Dockerfile.ppo_yurii_test
         volumes:
             - ./bomberman:/app
 

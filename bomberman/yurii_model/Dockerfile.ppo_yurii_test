@@ -1,0 +1,6 @@
+FROM python:3.8-bullseye
+COPY ../requirements.test.txt /app/requirements.txt
+COPY . /app/
+WORKDIR /app
+RUN python -m pip install -r requirements.txt
+ENTRYPOINT PYTHONUNBUFFERED=1 python agent_ppo_yurii_test.py

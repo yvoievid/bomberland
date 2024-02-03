@@ -1,10 +1,10 @@
 version: "3"
 
 services:
-    agent-ppo-custom-training:
+    agent-yurii-training:
         extends:
             file: docker-compose.templates.yaml
-            service: agent-ppo-custom-train
+            service: agent-yurii-train
         environment:
             - FWD_MODEL_CONNECTION_STRING=ws://gym:3000/?role=admin
         depends_on:
