@@ -56,3 +56,17 @@ services:
             dockerfile: Dockerfile.ppo_test
         volumes:
             - ./bomberman:/app
+
+    agent-vlad-train:
+        build:
+            context: bomberman
+            dockerfile: vlad_model/Dockerfile.vlad_train
+        volumes:
+            - ./bomberman:/app
+
+    agent-vlad-test:
+        build:
+            context: bomberman
+            dockerfile: vlad_model/Dockerfile.vlad_test
+        volumes:
+            - ./bomberman:/app

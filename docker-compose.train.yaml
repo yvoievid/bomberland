@@ -12,6 +12,16 @@ services:
         networks:
             - competition-net-train
 
+    agent-vlad-training:
+        extends:
+            file: docker-compose.templates.yaml
+            service: agent-vlad-train
+        environment:
+            - FWD_MODEL_CONNECTION_STRING=ws://gym:3000/?role=admin
+        depends_on:
+            - gym
+        networks:
+            - competition-net-train
 
     agent-ppo-training:
         extends:
