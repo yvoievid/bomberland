@@ -59,6 +59,13 @@ def unit_within_reach_of_a_bomb(observation: Observation, current_unit_id: str):
     return within_reach_of_a_bomb
 
 
+def distance_to_center_reward(observation: Observation, current_unit_id: str):
+    x, y = observation['unit_state'][current_unit_id]['coordinates']
+    center_x, center_y = 7.5, 7.5
+    distance = ((x - center_x) ** 2 + (y - center_y) ** 2) ** 0.5
+    return 2 / (1 + distance)
+
+
 def unit_within_safe_cell_nearby_bomb(observation: Observation, current_unit_id: str):
     unit = observation['unit_state'][current_unit_id]
     unit_coords = unit['coordinates']
@@ -115,7 +122,7 @@ def calculate_reward(prev_observation: Observation, next_observation: Observatio
 
     enemy_units_hps_diff = prev_enemy_units_hps - next_enemy_units_hps
     if enemy_units_hps_diff > 0:
-        reward += (enemy_units_hps_diff * 0.5)
+        reward += (enemy_units_hps_diff * 0.7)
 
     # 2. +1: when killing opponent
     prev_enemy_units_alive = find_enemy_units_alive(prev_observation, current_agent_id)
@@ -134,7 +141,7 @@ def calculate_reward(prev_observation: Observation, next_observation: Observatio
 
     my_units_hps_diff = prev_my_units_hps - next_my_units_hps
     if my_units_hps_diff > 0:
-        reward += (my_units_hps_diff * -0.75)
+        reward += (my_units_hps_diff * -1)
 
     # 5. -0.5: when losing teammate
     prev_my_units_alive = find_my_units_alive(prev_observation, current_agent_id)
@@ -169,6 +176,8 @@ def calculate_reward(prev_observation: Observation, next_observation: Observatio
     next_activated_bomb_near_an_obstacle = unit_activated_bomb_near_an_obstacle(next_observation, current_unit_id)
 
     if not prev_activated_bomb_near_an_obstacle and next_activated_bomb_near_an_obstacle:
-        reward += 0.2
+        reward += 0.05
+
+    reward += distance_to_center_reward(next_observation, current_unit_id)
 
     return torch.tensor(reward, dtype=torch.float32).reshape(1)
