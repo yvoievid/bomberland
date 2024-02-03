@@ -97,7 +97,7 @@ Reward function definition:
 5. -0.5: when losing teammate
 6. -1: when losing all 3 teammates
 7. -0.01: the longer game the bigger punishment is
-8. -0.5: the unit is in a cell within reach of a bomb
+8. -0.000666: the unit is in a cell within reach of a bomb
 9. +0.002: the unit is in a safe cell when there is an active bomb nearby 
 10. +0.1: the unit activated bomb near an obstacle
 """
@@ -121,10 +121,10 @@ def calculate_reward(prev_observation: Observation, next_observation: Observatio
     if prev_enemy_units_alive > next_enemy_units_alive:
         reward += 1
 
-    # 3. +1.5: when killing all 3 opponents
+    # 3. +1: when killing all 3 opponents
 
     if next_enemy_units_alive == 0:
-        reward += 1.5
+        reward += 1
 
     # 4. -0.25: when losing 1 hp for 1 teammate
 
@@ -152,21 +152,21 @@ def calculate_reward(prev_observation: Observation, next_observation: Observatio
 
     reward += (-0.01)
 
-    # 8. -10: the agent is in a cell within reach of a bomb
+    # 8. -0.1: the agent is in a cell within reach of a bomb
 
     prev_within_reach_of_a_bomb = unit_within_reach_of_a_bomb(prev_observation, current_unit_id)
     next_within_reach_of_a_bomb = unit_within_reach_of_a_bomb(next_observation, current_unit_id)
 
     if not prev_within_reach_of_a_bomb and next_within_reach_of_a_bomb:
-        reward += (-10)
+        reward += (-0.1)
 
-    # 9. +0.5: the agent is in a safe cell when there is an active bomb nearby
+    # 9. +0.002: the agent is in a safe cell when there is an active bomb nearby
 
     prev_within_safe_cell_nearby_bomb = unit_within_safe_cell_nearby_bomb(prev_observation, current_unit_id)
     next_within_safe_cell_nearby_bomb = unit_within_safe_cell_nearby_bomb(next_observation, current_unit_id)
 
     if not prev_within_safe_cell_nearby_bomb and next_within_safe_cell_nearby_bomb:
-        reward += 0.5
+        reward += 0.002
 
     # 10. +0.1: the unit activated bomb near an obstacle
 

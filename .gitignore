@@ -9,3 +9,6 @@ bomberman/requirements.test.txt
 bomberman/requirements.train.txt
 *.pt
 *.png
+.vscode/*
+.idea/*
+.DS_Store

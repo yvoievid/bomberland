@@ -8,7 +8,7 @@ from torch.distributions import Categorical
 
 from components.utils.device import device
 
-PPO_AGENT_PATH = "agent_ppo.pt"
+PPO_AGENT_PATH = "agent_ppo_yurii.pt"
 
 class RolloutBuffer:
     def __init__(self):
@@ -239,8 +239,8 @@ class PPO:
         # clear buffer
         self.buffer.clear()
     
-    def save(self, custom_name=PPO_AGENT_PATH):
-        torch.save(self.policy_old, custom_name)
+    def save(self):
+        torch.save(self.policy_old, PPO_AGENT_PATH)
 
     def show(self): 
         print(self.policy_old)

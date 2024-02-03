@@ -239,8 +239,8 @@ class PPO:
         # clear buffer
         self.buffer.clear()
     
-    def save(self):
-        torch.save(self.policy_old, PPO_AGENT_PATH)
+    def save(self, custom_name=PPO_AGENT_PATH):
+        torch.save(self.policy_old, custom_name)
 
     def show(self): 
         print(self.policy_old)
