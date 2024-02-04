@@ -8,7 +8,7 @@ from components.environment.config import (
     FWD_MODEL_CONNECTION_RETRIES,
 )
 from components.state import observation_to_state
-
+from components.models.ppo import PPO_AGENT_PATH
 
 class PPOAgent(Agent):
     async def _make_action(self, game_state, my_agent_id: str, my_unit_id: str):
@@ -24,7 +24,7 @@ def main():
     print("Connecting to game")
     for retry in range(FWD_MODEL_CONNECTION_RETRIES):
         try:
-            PPOAgent(model=torch.load("yurii.pt"))
+            PPOAgent(model=torch.load(PPO_AGENT_PATH))
         except Exception as e:
             print(f"Retrying to connect with {retry} attempt... Due to: {str(e)}")
             time.sleep(FWD_MODEL_CONNECTION_DELAY)

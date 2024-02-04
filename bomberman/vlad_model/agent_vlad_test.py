@@ -2,7 +2,7 @@ import time
 import torch
 
 from agent_base import Agent
-from components.environment.config import (
+from yurii_model.components.environment.config import (
     ACTIONS,
     FWD_MODEL_CONNECTION_DELAY,
     FWD_MODEL_CONNECTION_RETRIES,

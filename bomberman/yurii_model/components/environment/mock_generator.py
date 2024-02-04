@@ -1,12 +1,16 @@
 import json
 import random
 
-def generate_coordinates():
-    return [random.randint(0, 14), random.randint(0, 14)]
+def generate_unique_coordinates(occupied):
+    while True:
+        coords = [random.randint(0, 14), random.randint(0, 14)]
+        if tuple(coords) not in occupied:
+            occupied.add(tuple(coords))
+            return coords
 
-def generate_unit(unit_id, agent_id):
+def generate_unit(unit_id, agent_id, occupied):
     return {
-        "coordinates": generate_coordinates(),
+        "coordinates": generate_unique_coordinates(occupied),
         "hp": 3,
         "inventory": {"bombs": random.randint(1, 9999)},
         "blast_diameter": 3,
@@ -17,13 +21,19 @@ def generate_unit(unit_id, agent_id):
     }
 
 def generate_observation(index):
+    occupied = set()
     agents = {
-        "a": {"agent_id": "a", "unit_ids": ["a1", "a2", "a3"]},
-        "b": {"agent_id": "b", "unit_ids": ["b1", "b2", "b3"]}
+        "a": {"agent_id": "a", "unit_ids": ["c", "d", "e"]},
+        "b": {"agent_id": "b", "unit_ids": ["f", "g", "h"]}
     }
-    units = ["a1", "a2", "a3", "b1", "b2", "b3"]
-    unit_states = {unit: generate_unit(unit, "a" if unit.startswith("a") else "b") for unit in units}
-    entities = [{"created": 0, "x": random.randint(0, 14), "y": random.randint(0, 14), "type": random.choice(["m", "w", "o"]), "hp": 1 if random.choice([True, False]) else 3} for _ in range(20)]
+    units = ["c", "d", "e", "f", "g", "h"]
+    unit_states = {unit: generate_unit(unit, "a" if unit < "f" else "b", occupied) for unit in units}
+    entities = [{"created": 0, 
+                 "x": coord[0], 
+                 "y": coord[1], 
+                 "type": random.choice(["m", "w", "o"]), 
+                 "hp": 1 if random.choice([True, False]) else 3} 
+                for coord in [generate_unique_coordinates(occupied) for _ in range(20)]]
     
     observation = {
         "game_id": f"mock_game_{index}",

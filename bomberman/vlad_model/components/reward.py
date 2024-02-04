@@ -62,8 +62,8 @@ def unit_within_reach_of_a_bomb(observation: Observation, current_unit_id: str):
 def distance_to_center_reward(observation: Observation, current_unit_id: str):
     x, y = observation['unit_state'][current_unit_id]['coordinates']
     center_x, center_y = 7.5, 7.5
-    distance = ((x - center_x) ** 2 + (y - center_y) ** 2) ** 0.5
-    return 2 / (1 + distance)
+    distance = ((x - center_x)**2 + (y - center_y)**2) ** 0.5
+    return 3 / (1 + distance)
 
 
 def unit_within_safe_cell_nearby_bomb(observation: Observation, current_unit_id: str):
@@ -162,14 +162,14 @@ def calculate_reward(prev_observation: Observation, next_observation: Observatio
     next_within_reach_of_a_bomb = unit_within_reach_of_a_bomb(next_observation, current_unit_id)
 
     if not prev_within_reach_of_a_bomb and next_within_reach_of_a_bomb:
-        reward += (-1)
+        reward += (-2)
 
     # 9. +0.5: the agent is in a safe cell when there is an active bomb nearby
     prev_within_safe_cell_nearby_bomb = unit_within_safe_cell_nearby_bomb(prev_observation, current_unit_id)
     next_within_safe_cell_nearby_bomb = unit_within_safe_cell_nearby_bomb(next_observation, current_unit_id)
 
     if not prev_within_safe_cell_nearby_bomb and next_within_safe_cell_nearby_bomb:
-        reward += 0.5
+        reward += 2
 
     # 10. +0.1: the unit activated bomb near an obstacle
     prev_activated_bomb_near_an_obstacle = unit_activated_bomb_near_an_obstacle(prev_observation, current_unit_id)

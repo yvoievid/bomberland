@@ -104,22 +104,22 @@ Reward function definition:
 def calculate_reward(prev_observation: Observation, next_observation: Observation, current_agent_id: str, current_unit_id: str):
     reward = 0        
 
-    # 1. +0.5: when dealing 1 hp for 1 enemy
+    # 1. +2: when dealing 1 hp for 1 enemy
 
     prev_enemy_units_hps = find_enemy_units_hps(prev_observation, current_agent_id)
     next_enemy_units_hps = find_enemy_units_hps(next_observation, current_agent_id)
     
     enemy_units_hps_diff = prev_enemy_units_hps - next_enemy_units_hps
     if enemy_units_hps_diff > 0:
-        reward += (enemy_units_hps_diff * 0.5)
+        reward += (enemy_units_hps_diff * 2)
 
-    # 2. +1: when killing opponent
+    # 2. +3: when killing opponent
 
     prev_enemy_units_alive = find_enemy_units_alive(prev_observation, current_agent_id)
     next_enemy_units_alive = find_enemy_units_alive(next_observation, current_agent_id)
 
     if prev_enemy_units_alive > next_enemy_units_alive:
-        reward += 1
+        reward += 3
 
     # 3. +1: when killing all 3 opponents
 
@@ -158,7 +158,7 @@ def calculate_reward(prev_observation: Observation, next_observation: Observatio
     next_within_reach_of_a_bomb = unit_within_reach_of_a_bomb(next_observation, current_unit_id)
 
     if not prev_within_reach_of_a_bomb and next_within_reach_of_a_bomb:
-        reward += (-0.000666)
+        reward += (-0.2)
 
     # 9. +0.002: the agent is in a safe cell when there is an active bomb nearby
 

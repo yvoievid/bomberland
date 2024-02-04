@@ -111,7 +111,7 @@ def calculate_reward(prev_observation: Observation, next_observation: Observatio
     
     enemy_units_hps_diff = prev_enemy_units_hps - next_enemy_units_hps
     if enemy_units_hps_diff > 0:
-        reward += (enemy_units_hps_diff * 0.5)
+        reward += (enemy_units_hps_diff * 0.7)
 
     # 2. +1: when killing opponent
 
@@ -152,13 +152,13 @@ def calculate_reward(prev_observation: Observation, next_observation: Observatio
 
     reward += (-0.01)
 
-    # 8. -0.000666: the agent is in a cell within reach of a bomb
+    # 8. -10: the agent is in a cell within reach of a bomb
 
     prev_within_reach_of_a_bomb = unit_within_reach_of_a_bomb(prev_observation, current_unit_id)
     next_within_reach_of_a_bomb = unit_within_reach_of_a_bomb(next_observation, current_unit_id)
 
     if not prev_within_reach_of_a_bomb and next_within_reach_of_a_bomb:
-        reward += (-0.000666)
+        reward += (-1.2)
 
     # 9. +0.002: the agent is in a safe cell when there is an active bomb nearby
 
@@ -166,7 +166,7 @@ def calculate_reward(prev_observation: Observation, next_observation: Observatio
     next_within_safe_cell_nearby_bomb = unit_within_safe_cell_nearby_bomb(next_observation, current_unit_id)
 
     if not prev_within_safe_cell_nearby_bomb and next_within_safe_cell_nearby_bomb:
-        reward += 0.002
+        reward += 1.2
 
     # 10. +0.1: the unit activated bomb near an obstacle
 

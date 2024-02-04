@@ -14,7 +14,7 @@ from components.environment.gym import Gym, GymEnv
 from components.environment.mocks import MOCK_15x15_INITIAL_OBSERVATION, TEN_RANDOM_MOCK_15x15_INITIAL_OBSERVATIONS
 from components.models.ppo import PPO
 from components.action import make_action
-from reward_yurii import calculate_reward
+from components.reward import calculate_reward
 from components.state import (
     action_dimensions,
     state_dimensions, 
@@ -32,7 +32,7 @@ UNITS = ["c", "d", "e", "f", "g", "h"]
 Hyperparameters
 """
 
-EPOCHS = 1
+EPOCHS = 20
 STEPS = 1000
 BATCH_SIZE = 128
 LEARNING_RATE_ACTOR = 0.0001
