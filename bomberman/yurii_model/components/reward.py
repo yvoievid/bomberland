@@ -8,14 +8,77 @@ from components.utils.observation import (
 )
 from components.utils.metrics import manhattan_distance
 
+from components.utils.observation import get_nearest_active_fire_or_blast
+
+REWARDS = {
+    "get_damage": -5,
+    "get_killed": -5,
+    "get_all_killed": -10,
+    "within_reach_of_bomb": -5,
+    "in_safe_cell": 5,
+    "distance_to_center": lambda distance: 2 / (distance ** 2),
+    "moved_closer": 1
+}
+def distance_to_center_reward(observation: Observation, current_unit_id: str):
+    coord = observation['unit_state'][current_unit_id]['coordinates']
+    distance = manhattan_distance((7, 7), coord)
+    distance = max(distance, 1)
+    return REWARDS["distance_to_center"](distance)
+
+
+# Assuming there's a global variable or an external way to store visited squares
+# Initialize this somewhere in your game initialization code
+visited_rings = {}
+
+
+def calculate_ring(coordinates):
+    center = (7, 7)
+    distance = manhattan_distance(center, coordinates)
+    ring = 8 - distance
+    return max(ring, 0)
+
+
+def moved_to_center(prev_obs: Observation, new_obs: Observation, current_unit_id: str):
+    global visited_rings
+
+    if current_unit_id not in visited_rings:
+        visited_rings[current_unit_id] = set()
+
+    prev_coord = prev_obs['unit_state'][current_unit_id]['coordinates']
+    new_coord = new_obs['unit_state'][current_unit_id]['coordinates']
+
+    old_ring = calculate_ring(prev_coord)
+    new_ring = calculate_ring(new_coord)
+
+    # Check if the move is towards the center and the square hasn't been visited before
+    if new_ring > old_ring and new_ring not in visited_rings[current_unit_id]:
+        visited_rings[current_unit_id].add(new_ring)  # Mark this square as visited
+        return REWARDS["moved_closer"]
+    return 0
+
 
 def find_my_units_alive(observation: Observation, current_agent_id: str) -> int:
     alive = 0
     for unit_props in observation['unit_state'].values():
         if unit_props['agent_id'] == current_agent_id:
             if unit_props['hp'] != 0:
+
                 alive += 1
     return alive
+
+
+def unit_within_fire_cell(observation, current_unit_id):
+    unit = observation['unit_state'][current_unit_id]
+    unit_coords = unit['coordinates']
+    print(type(unit_coords))
+    print(unit_coords)
+    nearest_fire = get_nearest_active_fire_or_blast(observation, current_unit_id)
+    print(type(nearest_fire))
+    print(nearest_fire)
+    if nearest_fire is None:
+        return False
+    else:
+        return unit_coords[0] == int(nearest_fire['x']) and unit_coords[1] == int(nearest_fire['y'])
 
 
 def find_enemy_units_alive(observation: Observation, current_agent_id: str) -> int:
@@ -176,4 +239,14 @@ def calculate_reward(prev_observation: Observation, next_observation: Observatio
     if not prev_activated_bomb_near_an_obstacle and next_activated_bomb_near_an_obstacle:
         reward += 0.1
 
+    prev_unit_within_fire_cell = unit_within_fire_cell(prev_observation, current_unit_id)
+    next_unit_within_fire_cell = unit_within_fire_cell(next_observation, current_unit_id)
+
+    if prev_unit_within_fire_cell and not next_unit_within_fire_cell:
+        reward += 1
+
+    reward += distance_to_center_reward(next_observation, current_unit_id)
+    reward += moved_to_center(prev_observation, next_observation, current_unit_id)
+
     return torch.tensor(reward, dtype=torch.float32).reshape(1)
+

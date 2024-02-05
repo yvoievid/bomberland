@@ -8,6 +8,7 @@ from components.utils.observation import (
 )
 from components.utils.metrics import manhattan_distance
 
+from components.utils.observation import get_nearest_active_fire_or_blast
 
 def find_my_units_alive(observation: Observation, current_agent_id: str) -> int:
     alive = 0
@@ -16,7 +17,6 @@ def find_my_units_alive(observation: Observation, current_agent_id: str) -> int:
             if unit_props['hp'] != 0:
                 alive += 1
     return alive
-
 
 def find_enemy_units_alive(observation: Observation, current_agent_id: str) -> int:
     alive = 0
@@ -59,6 +59,15 @@ def unit_within_reach_of_a_bomb(observation: Observation, current_unit_id: str):
     return within_reach_of_a_bomb
 
 
+def unit_within_fire_cell(observation: Observation, current_unit_id: str):
+    unit = observation['unit_state'][current_unit_id]
+    unit_coords = unit['coordinates']
+    nearest_fire = get_nearest_active_fire_or_blast(observation, current_unit_id)
+    if nearest_fire is None or unit_coords['x'] != nearest_fire['x'] or unit_coords['y'] != nearest_fire['y']:
+        return False
+
+    return True
+
 def unit_within_safe_cell_nearby_bomb(observation: Observation, current_unit_id: str):
     unit = observation['unit_state'][current_unit_id]
     unit_coords = unit['coordinates']
@@ -68,7 +77,6 @@ def unit_within_safe_cell_nearby_bomb(observation: Observation, current_unit_id:
     nearest_bomb_coords = [nearest_bomb['x'], nearest_bomb['y']]
     within_safe_cell_nearby_bomb = manhattan_distance(unit_coords, nearest_bomb_coords) > nearest_bomb['blast_diameter']
     return within_safe_cell_nearby_bomb
-
 
 """
 Bomb definition: {'created': 74, 'x': 11, 'y': 10, 'type': 'b', 'unit_id': 'd', 'agent_id': 'b', 'expires': 104, 'hp': 1, 'blast_diameter': 3}
@@ -154,6 +162,8 @@ def calculate_reward(prev_observation: Observation, next_observation: Observatio
 
     # 8. -0.000666: the agent is in a cell within reach of a bomb
 
+    prev_unit_within_fire_cell = unit_within_fire_cell(prev_observation, current_unit_id)
+    next_unit_within_fire_cell = unit_within_fire_cell(next_observation, current_unit_id)
     prev_within_reach_of_a_bomb = unit_within_reach_of_a_bomb(prev_observation, current_unit_id)
     next_within_reach_of_a_bomb = unit_within_reach_of_a_bomb(next_observation, current_unit_id)
 
@@ -175,5 +185,9 @@ def calculate_reward(prev_observation: Observation, next_observation: Observatio
     
     if not prev_activated_bomb_near_an_obstacle and next_activated_bomb_near_an_obstacle:
         reward += 0.1
+
+    # -1: the agent is in the cell with fire
+    if prev_unit_within_fire_cell and not next_unit_within_fire_cell:
+        reward += 0.6
 
     return torch.tensor(reward, dtype=torch.float32).reshape(1)
