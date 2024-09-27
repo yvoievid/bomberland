@@ -8,7 +8,7 @@ services:
         ports:
             - 3000:3000
         environment:
-            - ADMIN_ROLE_ENABLED=0
+            - ADMIN_ROLE_ENABLED=1
             - AGENT_ID_MAPPING=agentA,agentB
             - INITIAL_HP=3
             - PRNG_SEED=1234
@@ -16,7 +16,7 @@ services:
             - TELEMETRY_ENABLED=1
             - TICK_RATE_HZ=10
             - TRAINING_MODE_ENABLED=0
-            - WORLD_SEED=1234
+            - WORLD_SEED=1235
         deploy:
             resources:
                 limits:
@@ -29,7 +29,7 @@ services:
         extends:
             file: docker-compose.templates.yaml
             # update next line with a service in base-compose.yml to change agent
-            service: agent-ppo-test
+            service: agent-yurii-test
         environment:
             - GAME_CONNECTION_STRING=ws://game-engine:3000/?role=agent&agentId=agentA&name=agent-ppo
         depends_on:
@@ -46,7 +46,7 @@ services:
         extends:
             file: docker-compose.templates.yaml
             # update next line with a service in base-compose.yml to change agent
-            service: agent-random-test
+            service: agent-yurii-test
         environment:
             - GAME_CONNECTION_STRING=ws://game-engine:3000/?role=agent&agentId=agentB&name=agent-random
         depends_on:

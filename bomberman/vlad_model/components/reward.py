@@ -2,13 +2,12 @@ import torch
 
 from components.types import Observation
 from components.utils.observation import (
-    get_nearest_active_bomb, 
+    get_nearest_active_bomb,
     get_nearest_obstacle,
-    get_unit_activated_bombs, 
+    get_unit_activated_bombs,
 )
 from components.utils.metrics import manhattan_distance
 
-from components.utils.observation import get_nearest_active_fire_or_blast
 
 def find_my_units_alive(observation: Observation, current_agent_id: str) -> int:
     alive = 0
@@ -17,6 +16,7 @@ def find_my_units_alive(observation: Observation, current_agent_id: str) -> int:
             if unit_props['hp'] != 0:
                 alive += 1
     return alive
+
 
 def find_enemy_units_alive(observation: Observation, current_agent_id: str) -> int:
     alive = 0
@@ -59,14 +59,12 @@ def unit_within_reach_of_a_bomb(observation: Observation, current_unit_id: str):
     return within_reach_of_a_bomb
 
 
-def unit_within_fire_cell(observation: Observation, current_unit_id: str):
-    unit = observation['unit_state'][current_unit_id]
-    unit_coords = unit['coordinates']
-    nearest_fire = get_nearest_active_fire_or_blast(observation, current_unit_id)
-    if nearest_fire is None or unit_coords['x'] != nearest_fire['x'] or unit_coords['y'] != nearest_fire['y']:
-        return False
+def distance_to_center_reward(observation: Observation, current_unit_id: str):
+    x, y = observation['unit_state'][current_unit_id]['coordinates']
+    center_x, center_y = 7.5, 7.5
+    distance = ((x - center_x)**2 + (y - center_y)**2) ** 0.5
+    return 3 / (1 + distance)
 
-    return True
 
 def unit_within_safe_cell_nearby_bomb(observation: Observation, current_unit_id: str):
     unit = observation['unit_state'][current_unit_id]
@@ -78,9 +76,12 @@ def unit_within_safe_cell_nearby_bomb(observation: Observation, current_unit_id:
     within_safe_cell_nearby_bomb = manhattan_distance(unit_coords, nearest_bomb_coords) > nearest_bomb['blast_diameter']
     return within_safe_cell_nearby_bomb
 
+
 """
 Bomb definition: {'created': 74, 'x': 11, 'y': 10, 'type': 'b', 'unit_id': 'd', 'agent_id': 'b', 'expires': 104, 'hp': 1, 'blast_diameter': 3}
 """
+
+
 def unit_activated_bomb_near_an_obstacle(observation: Observation, current_unit_id: str):
     unit_activated_bombs = get_unit_activated_bombs(observation, current_unit_id)
     if not len(unit_activated_bombs):
@@ -100,94 +101,83 @@ def unit_activated_bomb_near_an_obstacle(observation: Observation, current_unit_
 Reward function definition:
 1. +0.5: when dealing 1 hp for 1 enemy
 2. +1: when killing opponent
-3. +1: when killing all 3 opponents
-4. -0.25: when losing 1 hp for 1 teammate
-5. -0.5: when losing teammate
-6. -1: when losing all 3 teammates
+3. +2: when killing all 3 opponents
+4. -0.75: when losing 1 hp for 1 teammate
+5. -1.5: when losing teammate
+6. -2: when losing all 3 teammates
 7. -0.01: the longer game the bigger punishment is
-8. -0.000666: the unit is in a cell within reach of a bomb
-9. +0.002: the unit is in a safe cell when there is an active bomb nearby 
+8. -0.7: the unit is in a cell within reach of a bomb
+9. +0.7: the unit is in a safe cell when there is an active bomb nearby 
 10. +0.1: the unit activated bomb near an obstacle
 """
-def calculate_reward(prev_observation: Observation, next_observation: Observation, current_agent_id: str, current_unit_id: str):
-    reward = 0        
 
-    # 1. +2: when dealing 1 hp for 1 enemy
 
+def calculate_reward(prev_observation: Observation, next_observation: Observation, current_agent_id: str,
+                     current_unit_id: str):
+    reward = 0
+
+    # 1. +0.5: when dealing 1 hp for 1 enemy
     prev_enemy_units_hps = find_enemy_units_hps(prev_observation, current_agent_id)
     next_enemy_units_hps = find_enemy_units_hps(next_observation, current_agent_id)
-    
+
     enemy_units_hps_diff = prev_enemy_units_hps - next_enemy_units_hps
     if enemy_units_hps_diff > 0:
-        reward += (enemy_units_hps_diff * 2)
+        reward += (enemy_units_hps_diff * 0.7)
 
-    # 2. +3: when killing opponent
-
+    # 2. +1: when killing opponent
     prev_enemy_units_alive = find_enemy_units_alive(prev_observation, current_agent_id)
     next_enemy_units_alive = find_enemy_units_alive(next_observation, current_agent_id)
 
     if prev_enemy_units_alive > next_enemy_units_alive:
-        reward += 3
-
-    # 3. +1: when killing all 3 opponents
-
-    if next_enemy_units_alive == 0:
         reward += 1
 
-    # 4. -0.25: when losing 1 hp for 1 teammate
+    # 3. +1.5: when killing all 3 opponents
+    if next_enemy_units_alive == 0:
+        reward += 2
 
+    # 4. -0.25: when losing 1 hp for 1 teammate
     prev_my_units_hps = find_my_units_hps(prev_observation, current_agent_id)
     next_my_units_hps = find_my_units_hps(next_observation, current_agent_id)
 
     my_units_hps_diff = prev_my_units_hps - next_my_units_hps
     if my_units_hps_diff > 0:
-        reward += (my_units_hps_diff * -0.25)
+        reward += (my_units_hps_diff * -1)
 
     # 5. -0.5: when losing teammate
-
     prev_my_units_alive = find_my_units_alive(prev_observation, current_agent_id)
     next_my_units_alive = find_my_units_alive(next_observation, current_agent_id)
 
     if next_my_units_alive < prev_my_units_alive:
-        reward += (-0.5)
-
-    # 6. -1: when losing all 3 teammates
-
-    if next_my_units_alive == 0:
         reward += (-1)
 
-    # 7. -0.01: the longer game the bigger punishment is
+    # 6. -1: when losing all 3 teammates
+    if next_my_units_alive == 0:
+        reward += (-2)
 
+    # 7. -0.01: the longer game the bigger punishment is
     reward += (-0.01)
 
-    # 8. -0.000666: the agent is in a cell within reach of a bomb
-
-    prev_unit_within_fire_cell = unit_within_fire_cell(prev_observation, current_unit_id)
-    next_unit_within_fire_cell = unit_within_fire_cell(next_observation, current_unit_id)
+    # 8. -0.5: the agent is in a cell within reach of a bomb
     prev_within_reach_of_a_bomb = unit_within_reach_of_a_bomb(prev_observation, current_unit_id)
     next_within_reach_of_a_bomb = unit_within_reach_of_a_bomb(next_observation, current_unit_id)
 
     if not prev_within_reach_of_a_bomb and next_within_reach_of_a_bomb:
-        reward += (-0.2)
+        reward += (-2)
 
-    # 9. +0.002: the agent is in a safe cell when there is an active bomb nearby
-
+    # 9. +0.5: the agent is in a safe cell when there is an active bomb nearby
     prev_within_safe_cell_nearby_bomb = unit_within_safe_cell_nearby_bomb(prev_observation, current_unit_id)
     next_within_safe_cell_nearby_bomb = unit_within_safe_cell_nearby_bomb(next_observation, current_unit_id)
 
     if not prev_within_safe_cell_nearby_bomb and next_within_safe_cell_nearby_bomb:
-        reward += 0.002
+        reward += 2
 
     # 10. +0.1: the unit activated bomb near an obstacle
-
     prev_activated_bomb_near_an_obstacle = unit_activated_bomb_near_an_obstacle(prev_observation, current_unit_id)
     next_activated_bomb_near_an_obstacle = unit_activated_bomb_near_an_obstacle(next_observation, current_unit_id)
-    
-    if not prev_activated_bomb_near_an_obstacle and next_activated_bomb_near_an_obstacle:
-        reward += 0.1
 
-    # -1: the agent is in the cell with fire
-    if prev_unit_within_fire_cell and not next_unit_within_fire_cell:
-        reward += 0.6
+    if not prev_activated_bomb_near_an_obstacle and next_activated_bomb_near_an_obstacle:
+        reward += 0.05
+
+    reward += distance_to_center_reward(next_observation, current_unit_id)
 
     return torch.tensor(reward, dtype=torch.float32).reshape(1)

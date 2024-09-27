@@ -1,0 +1,2652 @@
+[
+    {
+        "game_id": "mock_game_0",
+        "agents": {
+            "a": {
+                "agent_id": "a",
+                "unit_ids": [
+                    "a1",
+                    "a2",
+                    "a3"
+                ]
+            },
+            "b": {
+                "agent_id": "b",
+                "unit_ids": [
+                    "b1",
+                    "b2",
+                    "b3"
+                ]
+            }
+        },
+        "unit_state": {
+            "a1": {
+                "coordinates": [
+                    0,
+                    3
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 2400
+                },
+                "blast_diameter": 3,
+                "unit_id": "a1",
+                "agent_id": "a",
+                "invulnerable": 0,
+                "stunned": 0
+            },
+            "a2": {
+                "coordinates": [
+                    12,
+                    7
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 8830
+                },
+                "blast_diameter": 3,
+                "unit_id": "a2",
+                "agent_id": "a",
+                "invulnerable": 0,
+                "stunned": 0
+            },
+            "a3": {
+                "coordinates": [
+                    3,
+                    8
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 1521
+                },
+                "blast_diameter": 3,
+                "unit_id": "a3",
+                "agent_id": "a",
+                "invulnerable": 0,
+                "stunned": 0
+            },
+            "b1": {
+                "coordinates": [
+                    3,
+                    12
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 8857
+                },
+                "blast_diameter": 3,
+                "unit_id": "b1",
+                "agent_id": "b",
+                "invulnerable": 0,
+                "stunned": 0
+            },
+            "b2": {
+                "coordinates": [
+                    1,
+                    9
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 8068
+                },
+                "blast_diameter": 3,
+                "unit_id": "b2",
+                "agent_id": "b",
+                "invulnerable": 0,
+                "stunned": 0
+            },
+            "b3": {
+                "coordinates": [
+                    3,
+                    4
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 2357
+                },
+                "blast_diameter": 3,
+                "unit_id": "b3",
+                "agent_id": "b",
+                "invulnerable": 0,
+                "stunned": 0
+            }
+        },
+        "entities": [
+            {
+                "created": 0,
+                "x": 5,
+                "y": 6,
+                "type": "m",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 10,
+                "y": 12,
+                "type": "o",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 1,
+                "y": 14,
+                "type": "w",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 9,
+                "y": 5,
+                "type": "m",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 9,
+                "y": 14,
+                "type": "w",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 13,
+                "y": 0,
+                "type": "m",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 13,
+                "y": 6,
+                "type": "m",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 11,
+                "y": 6,
+                "type": "w",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 1,
+                "y": 13,
+                "type": "m",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 2,
+                "y": 7,
+                "type": "w",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 2,
+                "y": 14,
+                "type": "w",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 0,
+                "y": 0,
+                "type": "w",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 6,
+                "y": 4,
+                "type": "w",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 9,
+                "y": 5,
+                "type": "m",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 11,
+                "y": 1,
+                "type": "m",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 4,
+                "y": 1,
+                "type": "o",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 11,
+                "y": 5,
+                "type": "o",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 9,
+                "y": 14,
+                "type": "w",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 3,
+                "y": 6,
+                "type": "m",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 10,
+                "y": 8,
+                "type": "o",
+                "hp": 3
+            }
+        ],
+        "world": {
+            "width": 15,
+            "height": 15
+        },
+        "tick": 183,
+        "config": {
+            "tick_rate_hz": 10,
+            "game_duration_ticks": 300,
+            "fire_spawn_interval_ticks": 2
+        }
+    },
+    {
+        "game_id": "mock_game_1",
+        "agents": {
+            "a": {
+                "agent_id": "a",
+                "unit_ids": [
+                    "a1",
+                    "a2",
+                    "a3"
+                ]
+            },
+            "b": {
+                "agent_id": "b",
+                "unit_ids": [
+                    "b1",
+                    "b2",
+                    "b3"
+                ]
+            }
+        },
+        "unit_state": {
+            "a1": {
+                "coordinates": [
+                    0,
+                    9
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 2148
+                },
+                "blast_diameter": 3,
+                "unit_id": "a1",
+                "agent_id": "a",
+                "invulnerable": 0,
+                "stunned": 0
+            },
+            "a2": {
+                "coordinates": [
+                    4,
+                    7
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 967
+                },
+                "blast_diameter": 3,
+                "unit_id": "a2",
+                "agent_id": "a",
+                "invulnerable": 0,
+                "stunned": 0
+            },
+            "a3": {
+                "coordinates": [
+                    11,
+                    11
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 2234
+                },
+                "blast_diameter": 3,
+                "unit_id": "a3",
+                "agent_id": "a",
+                "invulnerable": 0,
+                "stunned": 0
+            },
+            "b1": {
+                "coordinates": [
+                    9,
+                    1
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 8199
+                },
+                "blast_diameter": 3,
+                "unit_id": "b1",
+                "agent_id": "b",
+                "invulnerable": 0,
+                "stunned": 0
+            },
+            "b2": {
+                "coordinates": [
+                    7,
+                    11
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 7153
+                },
+                "blast_diameter": 3,
+                "unit_id": "b2",
+                "agent_id": "b",
+                "invulnerable": 0,
+                "stunned": 0
+            },
+            "b3": {
+                "coordinates": [
+                    8,
+                    12
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 4888
+                },
+                "blast_diameter": 3,
+                "unit_id": "b3",
+                "agent_id": "b",
+                "invulnerable": 0,
+                "stunned": 0
+            }
+        },
+        "entities": [
+            {
+                "created": 0,
+                "x": 5,
+                "y": 9,
+                "type": "w",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 0,
+                "y": 4,
+                "type": "o",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 9,
+                "y": 3,
+                "type": "m",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 5,
+                "y": 14,
+                "type": "w",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 5,
+                "y": 4,
+                "type": "w",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 11,
+                "y": 4,
+                "type": "o",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 9,
+                "y": 10,
+                "type": "o",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 7,
+                "y": 11,
+                "type": "m",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 13,
+                "y": 10,
+                "type": "w",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 14,
+                "y": 6,
+                "type": "w",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 6,
+                "y": 3,
+                "type": "w",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 13,
+                "y": 10,
+                "type": "w",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 11,
+                "y": 9,
+                "type": "o",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 3,
+                "y": 14,
+                "type": "w",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 8,
+                "y": 5,
+                "type": "m",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 10,
+                "y": 6,
+                "type": "m",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 14,
+                "y": 5,
+                "type": "m",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 6,
+                "y": 12,
+                "type": "o",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 2,
+                "y": 14,
+                "type": "w",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 9,
+                "y": 5,
+                "type": "m",
+                "hp": 3
+            }
+        ],
+        "world": {
+            "width": 15,
+            "height": 15
+        },
+        "tick": 127,
+        "config": {
+            "tick_rate_hz": 10,
+            "game_duration_ticks": 300,
+            "fire_spawn_interval_ticks": 2
+        }
+    },
+    {
+        "game_id": "mock_game_2",
+        "agents": {
+            "a": {
+                "agent_id": "a",
+                "unit_ids": [
+                    "a1",
+                    "a2",
+                    "a3"
+                ]
+            },
+            "b": {
+                "agent_id": "b",
+                "unit_ids": [
+                    "b1",
+                    "b2",
+                    "b3"
+                ]
+            }
+        },
+        "unit_state": {
+            "a1": {
+                "coordinates": [
+                    5,
+                    14
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 4949
+                },
+                "blast_diameter": 3,
+                "unit_id": "a1",
+                "agent_id": "a",
+                "invulnerable": 0,
+                "stunned": 0
+            },
+            "a2": {
+                "coordinates": [
+                    14,
+                    2
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 2342
+                },
+                "blast_diameter": 3,
+                "unit_id": "a2",
+                "agent_id": "a",
+                "invulnerable": 0,
+                "stunned": 0
+            },
+            "a3": {
+                "coordinates": [
+                    9,
+                    12
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 6381
+                },
+                "blast_diameter": 3,
+                "unit_id": "a3",
+                "agent_id": "a",
+                "invulnerable": 0,
+                "stunned": 0
+            },
+            "b1": {
+                "coordinates": [
+                    0,
+                    12
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 4122
+                },
+                "blast_diameter": 3,
+                "unit_id": "b1",
+                "agent_id": "b",
+                "invulnerable": 0,
+                "stunned": 0
+            },
+            "b2": {
+                "coordinates": [
+                    2,
+                    2
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 9291
+                },
+                "blast_diameter": 3,
+                "unit_id": "b2",
+                "agent_id": "b",
+                "invulnerable": 0,
+                "stunned": 0
+            },
+            "b3": {
+                "coordinates": [
+                    5,
+                    11
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 6144
+                },
+                "blast_diameter": 3,
+                "unit_id": "b3",
+                "agent_id": "b",
+                "invulnerable": 0,
+                "stunned": 0
+            }
+        },
+        "entities": [
+            {
+                "created": 0,
+                "x": 10,
+                "y": 0,
+                "type": "m",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 4,
+                "y": 3,
+                "type": "o",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 13,
+                "y": 12,
+                "type": "o",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 1,
+                "y": 5,
+                "type": "o",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 10,
+                "y": 7,
+                "type": "w",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 7,
+                "y": 2,
+                "type": "w",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 1,
+                "y": 12,
+                "type": "w",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 6,
+                "y": 9,
+                "type": "m",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 12,
+                "y": 9,
+                "type": "w",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 4,
+                "y": 14,
+                "type": "m",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 3,
+                "y": 12,
+                "type": "o",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 0,
+                "y": 12,
+                "type": "m",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 9,
+                "y": 11,
+                "type": "o",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 10,
+                "y": 0,
+                "type": "o",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 14,
+                "y": 0,
+                "type": "o",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 0,
+                "y": 10,
+                "type": "o",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 7,
+                "y": 6,
+                "type": "w",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 9,
+                "y": 10,
+                "type": "m",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 11,
+                "y": 8,
+                "type": "m",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 13,
+                "y": 8,
+                "type": "m",
+                "hp": 3
+            }
+        ],
+        "world": {
+            "width": 15,
+            "height": 15
+        },
+        "tick": 26,
+        "config": {
+            "tick_rate_hz": 10,
+            "game_duration_ticks": 300,
+            "fire_spawn_interval_ticks": 2
+        }
+    },
+    {
+        "game_id": "mock_game_3",
+        "agents": {
+            "a": {
+                "agent_id": "a",
+                "unit_ids": [
+                    "a1",
+                    "a2",
+                    "a3"
+                ]
+            },
+            "b": {
+                "agent_id": "b",
+                "unit_ids": [
+                    "b1",
+                    "b2",
+                    "b3"
+                ]
+            }
+        },
+        "unit_state": {
+            "a1": {
+                "coordinates": [
+                    0,
+                    8
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 1660
+                },
+                "blast_diameter": 3,
+                "unit_id": "a1",
+                "agent_id": "a",
+                "invulnerable": 0,
+                "stunned": 0
+            },
+            "a2": {
+                "coordinates": [
+                    0,
+                    2
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 4728
+                },
+                "blast_diameter": 3,
+                "unit_id": "a2",
+                "agent_id": "a",
+                "invulnerable": 0,
+                "stunned": 0
+            },
+            "a3": {
+                "coordinates": [
+                    8,
+                    6
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 2383
+                },
+                "blast_diameter": 3,
+                "unit_id": "a3",
+                "agent_id": "a",
+                "invulnerable": 0,
+                "stunned": 0
+            },
+            "b1": {
+                "coordinates": [
+                    7,
+                    2
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 7117
+                },
+                "blast_diameter": 3,
+                "unit_id": "b1",
+                "agent_id": "b",
+                "invulnerable": 0,
+                "stunned": 0
+            },
+            "b2": {
+                "coordinates": [
+                    1,
+                    9
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 1421
+                },
+                "blast_diameter": 3,
+                "unit_id": "b2",
+                "agent_id": "b",
+                "invulnerable": 0,
+                "stunned": 0
+            },
+            "b3": {
+                "coordinates": [
+                    7,
+                    13
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 8186
+                },
+                "blast_diameter": 3,
+                "unit_id": "b3",
+                "agent_id": "b",
+                "invulnerable": 0,
+                "stunned": 0
+            }
+        },
+        "entities": [
+            {
+                "created": 0,
+                "x": 14,
+                "y": 14,
+                "type": "o",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 2,
+                "y": 3,
+                "type": "m",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 0,
+                "y": 14,
+                "type": "o",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 5,
+                "y": 0,
+                "type": "w",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 14,
+                "y": 3,
+                "type": "o",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 7,
+                "y": 4,
+                "type": "o",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 10,
+                "y": 8,
+                "type": "w",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 10,
+                "y": 12,
+                "type": "w",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 2,
+                "y": 6,
+                "type": "w",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 12,
+                "y": 3,
+                "type": "o",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 4,
+                "y": 9,
+                "type": "m",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 3,
+                "y": 1,
+                "type": "w",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 4,
+                "y": 12,
+                "type": "o",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 5,
+                "y": 5,
+                "type": "m",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 14,
+                "y": 0,
+                "type": "o",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 11,
+                "y": 5,
+                "type": "o",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 10,
+                "y": 7,
+                "type": "m",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 13,
+                "y": 14,
+                "type": "o",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 8,
+                "y": 12,
+                "type": "m",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 10,
+                "y": 2,
+                "type": "w",
+                "hp": 3
+            }
+        ],
+        "world": {
+            "width": 15,
+            "height": 15
+        },
+        "tick": 185,
+        "config": {
+            "tick_rate_hz": 10,
+            "game_duration_ticks": 300,
+            "fire_spawn_interval_ticks": 2
+        }
+    },
+    {
+        "game_id": "mock_game_4",
+        "agents": {
+            "a": {
+                "agent_id": "a",
+                "unit_ids": [
+                    "a1",
+                    "a2",
+                    "a3"
+                ]
+            },
+            "b": {
+                "agent_id": "b",
+                "unit_ids": [
+                    "b1",
+                    "b2",
+                    "b3"
+                ]
+            }
+        },
+        "unit_state": {
+            "a1": {
+                "coordinates": [
+                    7,
+                    8
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 5902
+                },
+                "blast_diameter": 3,
+                "unit_id": "a1",
+                "agent_id": "a",
+                "invulnerable": 0,
+                "stunned": 0
+            },
+            "a2": {
+                "coordinates": [
+                    6,
+                    0
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 5842
+                },
+                "blast_diameter": 3,
+                "unit_id": "a2",
+                "agent_id": "a",
+                "invulnerable": 0,
+                "stunned": 0
+            },
+            "a3": {
+                "coordinates": [
+                    5,
+                    12
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 3907
+                },
+                "blast_diameter": 3,
+                "unit_id": "a3",
+                "agent_id": "a",
+                "invulnerable": 0,
+                "stunned": 0
+            },
+            "b1": {
+                "coordinates": [
+                    4,
+                    9
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 308
+                },
+                "blast_diameter": 3,
+                "unit_id": "b1",
+                "agent_id": "b",
+                "invulnerable": 0,
+                "stunned": 0
+            },
+            "b2": {
+                "coordinates": [
+                    4,
+                    10
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 767
+                },
+                "blast_diameter": 3,
+                "unit_id": "b2",
+                "agent_id": "b",
+                "invulnerable": 0,
+                "stunned": 0
+            },
+            "b3": {
+                "coordinates": [
+                    5,
+                    5
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 8717
+                },
+                "blast_diameter": 3,
+                "unit_id": "b3",
+                "agent_id": "b",
+                "invulnerable": 0,
+                "stunned": 0
+            }
+        },
+        "entities": [
+            {
+                "created": 0,
+                "x": 10,
+                "y": 9,
+                "type": "m",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 13,
+                "y": 12,
+                "type": "o",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 1,
+                "y": 8,
+                "type": "w",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 6,
+                "y": 0,
+                "type": "o",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 4,
+                "y": 8,
+                "type": "o",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 10,
+                "y": 0,
+                "type": "w",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 8,
+                "y": 8,
+                "type": "w",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 14,
+                "y": 0,
+                "type": "m",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 6,
+                "y": 1,
+                "type": "o",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 8,
+                "y": 7,
+                "type": "o",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 12,
+                "y": 5,
+                "type": "w",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 12,
+                "y": 6,
+                "type": "w",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 10,
+                "y": 0,
+                "type": "m",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 10,
+                "y": 7,
+                "type": "o",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 1,
+                "y": 4,
+                "type": "m",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 2,
+                "y": 8,
+                "type": "o",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 9,
+                "y": 10,
+                "type": "w",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 11,
+                "y": 0,
+                "type": "m",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 8,
+                "y": 12,
+                "type": "w",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 9,
+                "y": 4,
+                "type": "w",
+                "hp": 1
+            }
+        ],
+        "world": {
+            "width": 15,
+            "height": 15
+        },
+        "tick": 286,
+        "config": {
+            "tick_rate_hz": 10,
+            "game_duration_ticks": 300,
+            "fire_spawn_interval_ticks": 2
+        }
+    },
+    {
+        "game_id": "mock_game_5",
+        "agents": {
+            "a": {
+                "agent_id": "a",
+                "unit_ids": [
+                    "a1",
+                    "a2",
+                    "a3"
+                ]
+            },
+            "b": {
+                "agent_id": "b",
+                "unit_ids": [
+                    "b1",
+                    "b2",
+                    "b3"
+                ]
+            }
+        },
+        "unit_state": {
+            "a1": {
+                "coordinates": [
+                    9,
+                    6
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 6109
+                },
+                "blast_diameter": 3,
+                "unit_id": "a1",
+                "agent_id": "a",
+                "invulnerable": 0,
+                "stunned": 0
+            },
+            "a2": {
+                "coordinates": [
+                    3,
+                    13
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 2637
+                },
+                "blast_diameter": 3,
+                "unit_id": "a2",
+                "agent_id": "a",
+                "invulnerable": 0,
+                "stunned": 0
+            },
+            "a3": {
+                "coordinates": [
+                    10,
+                    2
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 3165
+                },
+                "blast_diameter": 3,
+                "unit_id": "a3",
+                "agent_id": "a",
+                "invulnerable": 0,
+                "stunned": 0
+            },
+            "b1": {
+                "coordinates": [
+                    0,
+                    4
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 437
+                },
+                "blast_diameter": 3,
+                "unit_id": "b1",
+                "agent_id": "b",
+                "invulnerable": 0,
+                "stunned": 0
+            },
+            "b2": {
+                "coordinates": [
+                    11,
+                    4
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 1584
+                },
+                "blast_diameter": 3,
+                "unit_id": "b2",
+                "agent_id": "b",
+                "invulnerable": 0,
+                "stunned": 0
+            },
+            "b3": {
+                "coordinates": [
+                    1,
+                    6
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 3091
+                },
+                "blast_diameter": 3,
+                "unit_id": "b3",
+                "agent_id": "b",
+                "invulnerable": 0,
+                "stunned": 0
+            }
+        },
+        "entities": [
+            {
+                "created": 0,
+                "x": 13,
+                "y": 1,
+                "type": "m",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 8,
+                "y": 2,
+                "type": "m",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 1,
+                "y": 0,
+                "type": "w",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 3,
+                "y": 6,
+                "type": "m",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 11,
+                "y": 9,
+                "type": "w",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 14,
+                "y": 4,
+                "type": "o",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 0,
+                "y": 1,
+                "type": "w",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 1,
+                "y": 7,
+                "type": "m",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 7,
+                "y": 8,
+                "type": "m",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 14,
+                "y": 13,
+                "type": "o",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 10,
+                "y": 1,
+                "type": "w",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 2,
+                "y": 1,
+                "type": "m",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 2,
+                "y": 12,
+                "type": "m",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 2,
+                "y": 10,
+                "type": "o",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 2,
+                "y": 14,
+                "type": "o",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 10,
+                "y": 5,
+                "type": "m",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 9,
+                "y": 10,
+                "type": "w",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 0,
+                "y": 14,
+                "type": "o",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 7,
+                "y": 12,
+                "type": "m",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 12,
+                "y": 1,
+                "type": "w",
+                "hp": 1
+            }
+        ],
+        "world": {
+            "width": 15,
+            "height": 15
+        },
+        "tick": 33,
+        "config": {
+            "tick_rate_hz": 10,
+            "game_duration_ticks": 300,
+            "fire_spawn_interval_ticks": 2
+        }
+    },
+    {
+        "game_id": "mock_game_6",
+        "agents": {
+            "a": {
+                "agent_id": "a",
+                "unit_ids": [
+                    "a1",
+                    "a2",
+                    "a3"
+                ]
+            },
+            "b": {
+                "agent_id": "b",
+                "unit_ids": [
+                    "b1",
+                    "b2",
+                    "b3"
+                ]
+            }
+        },
+        "unit_state": {
+            "a1": {
+                "coordinates": [
+                    1,
+                    11
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 874
+                },
+                "blast_diameter": 3,
+                "unit_id": "a1",
+                "agent_id": "a",
+                "invulnerable": 0,
+                "stunned": 0
+            },
+            "a2": {
+                "coordinates": [
+                    13,
+                    12
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 3333
+                },
+                "blast_diameter": 3,
+                "unit_id": "a2",
+                "agent_id": "a",
+                "invulnerable": 0,
+                "stunned": 0
+            },
+            "a3": {
+                "coordinates": [
+                    5,
+                    9
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 1711
+                },
+                "blast_diameter": 3,
+                "unit_id": "a3",
+                "agent_id": "a",
+                "invulnerable": 0,
+                "stunned": 0
+            },
+            "b1": {
+                "coordinates": [
+                    12,
+                    4
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 2947
+                },
+                "blast_diameter": 3,
+                "unit_id": "b1",
+                "agent_id": "b",
+                "invulnerable": 0,
+                "stunned": 0
+            },
+            "b2": {
+                "coordinates": [
+                    10,
+                    5
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 278
+                },
+                "blast_diameter": 3,
+                "unit_id": "b2",
+                "agent_id": "b",
+                "invulnerable": 0,
+                "stunned": 0
+            },
+            "b3": {
+                "coordinates": [
+                    9,
+                    4
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 2461
+                },
+                "blast_diameter": 3,
+                "unit_id": "b3",
+                "agent_id": "b",
+                "invulnerable": 0,
+                "stunned": 0
+            }
+        },
+        "entities": [
+            {
+                "created": 0,
+                "x": 7,
+                "y": 9,
+                "type": "w",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 1,
+                "y": 1,
+                "type": "m",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 5,
+                "y": 3,
+                "type": "m",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 2,
+                "y": 5,
+                "type": "o",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 2,
+                "y": 9,
+                "type": "w",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 8,
+                "y": 11,
+                "type": "w",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 1,
+                "y": 9,
+                "type": "w",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 14,
+                "y": 3,
+                "type": "w",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 7,
+                "y": 6,
+                "type": "o",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 9,
+                "y": 0,
+                "type": "w",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 0,
+                "y": 1,
+                "type": "o",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 9,
+                "y": 11,
+                "type": "w",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 14,
+                "y": 1,
+                "type": "o",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 1,
+                "y": 6,
+                "type": "w",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 11,
+                "y": 9,
+                "type": "o",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 0,
+                "y": 6,
+                "type": "m",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 14,
+                "y": 3,
+                "type": "w",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 6,
+                "y": 1,
+                "type": "m",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 6,
+                "y": 1,
+                "type": "o",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 1,
+                "y": 1,
+                "type": "w",
+                "hp": 3
+            }
+        ],
+        "world": {
+            "width": 15,
+            "height": 15
+        },
+        "tick": 296,
+        "config": {
+            "tick_rate_hz": 10,
+            "game_duration_ticks": 300,
+            "fire_spawn_interval_ticks": 2
+        }
+    },
+    {
+        "game_id": "mock_game_7",
+        "agents": {
+            "a": {
+                "agent_id": "a",
+                "unit_ids": [
+                    "a1",
+                    "a2",
+                    "a3"
+                ]
+            },
+            "b": {
+                "agent_id": "b",
+                "unit_ids": [
+                    "b1",
+                    "b2",
+                    "b3"
+                ]
+            }
+        },
+        "unit_state": {
+            "a1": {
+                "coordinates": [
+                    1,
+                    4
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 2843
+                },
+                "blast_diameter": 3,
+                "unit_id": "a1",
+                "agent_id": "a",
+                "invulnerable": 0,
+                "stunned": 0
+            },
+            "a2": {
+                "coordinates": [
+                    12,
+                    13
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 5744
+                },
+                "blast_diameter": 3,
+                "unit_id": "a2",
+                "agent_id": "a",
+                "invulnerable": 0,
+                "stunned": 0
+            },
+            "a3": {
+                "coordinates": [
+                    2,
+                    6
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 5700
+                },
+                "blast_diameter": 3,
+                "unit_id": "a3",
+                "agent_id": "a",
+                "invulnerable": 0,
+                "stunned": 0
+            },
+            "b1": {
+                "coordinates": [
+                    0,
+                    12
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 5238
+                },
+                "blast_diameter": 3,
+                "unit_id": "b1",
+                "agent_id": "b",
+                "invulnerable": 0,
+                "stunned": 0
+            },
+            "b2": {
+                "coordinates": [
+                    3,
+                    1
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 1346
+                },
+                "blast_diameter": 3,
+                "unit_id": "b2",
+                "agent_id": "b",
+                "invulnerable": 0,
+                "stunned": 0
+            },
+            "b3": {
+                "coordinates": [
+                    1,
+                    2
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 9398
+                },
+                "blast_diameter": 3,
+                "unit_id": "b3",
+                "agent_id": "b",
+                "invulnerable": 0,
+                "stunned": 0
+            }
+        },
+        "entities": [
+            {
+                "created": 0,
+                "x": 6,
+                "y": 5,
+                "type": "w",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 12,
+                "y": 5,
+                "type": "m",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 12,
+                "y": 2,
+                "type": "w",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 2,
+                "y": 11,
+                "type": "w",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 2,
+                "y": 14,
+                "type": "o",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 12,
+                "y": 9,
+                "type": "o",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 2,
+                "y": 10,
+                "type": "w",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 13,
+                "y": 4,
+                "type": "w",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 2,
+                "y": 0,
+                "type": "o",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 14,
+                "y": 10,
+                "type": "o",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 5,
+                "y": 6,
+                "type": "m",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 6,
+                "y": 11,
+                "type": "o",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 2,
+                "y": 9,
+                "type": "o",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 6,
+                "y": 8,
+                "type": "o",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 10,
+                "y": 7,
+                "type": "w",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 12,
+                "y": 13,
+                "type": "w",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 14,
+                "y": 10,
+                "type": "o",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 2,
+                "y": 11,
+                "type": "w",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 5,
+                "y": 7,
+                "type": "m",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 0,
+                "y": 4,
+                "type": "w",
+                "hp": 3
+            }
+        ],
+        "world": {
+            "width": 15,
+            "height": 15
+        },
+        "tick": 167,
+        "config": {
+            "tick_rate_hz": 10,
+            "game_duration_ticks": 300,
+            "fire_spawn_interval_ticks": 2
+        }
+    },
+    {
+        "game_id": "mock_game_8",
+        "agents": {
+            "a": {
+                "agent_id": "a",
+                "unit_ids": [
+                    "a1",
+                    "a2",
+                    "a3"
+                ]
+            },
+            "b": {
+                "agent_id": "b",
+                "unit_ids": [
+                    "b1",
+                    "b2",
+                    "b3"
+                ]
+            }
+        },
+        "unit_state": {
+            "a1": {
+                "coordinates": [
+                    4,
+                    10
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 8949
+                },
+                "blast_diameter": 3,
+                "unit_id": "a1",
+                "agent_id": "a",
+                "invulnerable": 0,
+                "stunned": 0
+            },
+            "a2": {
+                "coordinates": [
+                    12,
+                    0
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 5484
+                },
+                "blast_diameter": 3,
+                "unit_id": "a2",
+                "agent_id": "a",
+                "invulnerable": 0,
+                "stunned": 0
+            },
+            "a3": {
+                "coordinates": [
+                    1,
+                    14
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 4231
+                },
+                "blast_diameter": 3,
+                "unit_id": "a3",
+                "agent_id": "a",
+                "invulnerable": 0,
+                "stunned": 0
+            },
+            "b1": {
+                "coordinates": [
+                    11,
+                    13
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 6950
+                },
+                "blast_diameter": 3,
+                "unit_id": "b1",
+                "agent_id": "b",
+                "invulnerable": 0,
+                "stunned": 0
+            },
+            "b2": {
+                "coordinates": [
+                    7,
+                    11
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 9323
+                },
+                "blast_diameter": 3,
+                "unit_id": "b2",
+                "agent_id": "b",
+                "invulnerable": 0,
+                "stunned": 0
+            },
+            "b3": {
+                "coordinates": [
+                    9,
+                    7
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 6503
+                },
+                "blast_diameter": 3,
+                "unit_id": "b3",
+                "agent_id": "b",
+                "invulnerable": 0,
+                "stunned": 0
+            }
+        },
+        "entities": [
+            {
+                "created": 0,
+                "x": 12,
+                "y": 14,
+                "type": "w",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 13,
+                "y": 11,
+                "type": "o",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 13,
+                "y": 9,
+                "type": "m",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 2,
+                "y": 0,
+                "type": "w",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 11,
+                "y": 5,
+                "type": "o",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 9,
+                "y": 1,
+                "type": "w",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 5,
+                "y": 2,
+                "type": "o",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 2,
+                "y": 5,
+                "type": "m",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 1,
+                "y": 11,
+                "type": "w",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 2,
+                "y": 12,
+                "type": "w",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 5,
+                "y": 9,
+                "type": "w",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 7,
+                "y": 6,
+                "type": "m",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 13,
+                "y": 12,
+                "type": "o",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 5,
+                "y": 8,
+                "type": "m",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 8,
+                "y": 4,
+                "type": "m",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 9,
+                "y": 2,
+                "type": "w",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 4,
+                "y": 6,
+                "type": "o",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 3,
+                "y": 14,
+                "type": "m",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 0,
+                "y": 6,
+                "type": "w",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 12,
+                "y": 8,
+                "type": "w",
+                "hp": 3
+            }
+        ],
+        "world": {
+            "width": 15,
+            "height": 15
+        },
+        "tick": 228,
+        "config": {
+            "tick_rate_hz": 10,
+            "game_duration_ticks": 300,
+            "fire_spawn_interval_ticks": 2
+        }
+    },
+    {
+        "game_id": "mock_game_9",
+        "agents": {
+            "a": {
+                "agent_id": "a",
+                "unit_ids": [
+                    "a1",
+                    "a2",
+                    "a3"
+                ]
+            },
+            "b": {
+                "agent_id": "b",
+                "unit_ids": [
+                    "b1",
+                    "b2",
+                    "b3"
+                ]
+            }
+        },
+        "unit_state": {
+            "a1": {
+                "coordinates": [
+                    11,
+                    6
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 7995
+                },
+                "blast_diameter": 3,
+                "unit_id": "a1",
+                "agent_id": "a",
+                "invulnerable": 0,
+                "stunned": 0
+            },
+            "a2": {
+                "coordinates": [
+                    5,
+                    3
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 679
+                },
+                "blast_diameter": 3,
+                "unit_id": "a2",
+                "agent_id": "a",
+                "invulnerable": 0,
+                "stunned": 0
+            },
+            "a3": {
+                "coordinates": [
+                    8,
+                    9
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 1189
+                },
+                "blast_diameter": 3,
+                "unit_id": "a3",
+                "agent_id": "a",
+                "invulnerable": 0,
+                "stunned": 0
+            },
+            "b1": {
+                "coordinates": [
+                    7,
+                    3
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 607
+                },
+                "blast_diameter": 3,
+                "unit_id": "b1",
+                "agent_id": "b",
+                "invulnerable": 0,
+                "stunned": 0
+            },
+            "b2": {
+                "coordinates": [
+                    0,
+                    5
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 5782
+                },
+                "blast_diameter": 3,
+                "unit_id": "b2",
+                "agent_id": "b",
+                "invulnerable": 0,
+                "stunned": 0
+            },
+            "b3": {
+                "coordinates": [
+                    10,
+                    14
+                ],
+                "hp": 3,
+                "inventory": {
+                    "bombs": 4684
+                },
+                "blast_diameter": 3,
+                "unit_id": "b3",
+                "agent_id": "b",
+                "invulnerable": 0,
+                "stunned": 0
+            }
+        },
+        "entities": [
+            {
+                "created": 0,
+                "x": 13,
+                "y": 8,
+                "type": "m",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 9,
+                "y": 0,
+                "type": "w",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 13,
+                "y": 5,
+                "type": "o",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 9,
+                "y": 14,
+                "type": "o",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 9,
+                "y": 4,
+                "type": "w",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 6,
+                "y": 1,
+                "type": "o",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 12,
+                "y": 0,
+                "type": "m",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 8,
+                "y": 13,
+                "type": "o",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 11,
+                "y": 9,
+                "type": "m",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 4,
+                "y": 1,
+                "type": "o",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 0,
+                "y": 7,
+                "type": "o",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 12,
+                "y": 11,
+                "type": "o",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 1,
+                "y": 14,
+                "type": "o",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 12,
+                "y": 8,
+                "type": "o",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 9,
+                "y": 9,
+                "type": "m",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 5,
+                "y": 0,
+                "type": "o",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 6,
+                "y": 11,
+                "type": "m",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 13,
+                "y": 10,
+                "type": "w",
+                "hp": 3
+            },
+            {
+                "created": 0,
+                "x": 8,
+                "y": 6,
+                "type": "m",
+                "hp": 1
+            },
+            {
+                "created": 0,
+                "x": 5,
+                "y": 14,
+                "type": "o",
+                "hp": 3
+            }
+        ],
+        "world": {
+            "width": 15,
+            "height": 15
+        },
+        "tick": 66,
+        "config": {
+            "tick_rate_hz": 10,
+            "game_duration_ticks": 300,
+            "fire_spawn_interval_ticks": 2
+        }
+    }
+]

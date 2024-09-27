@@ -33,12 +33,12 @@ Hyperparameters
 EPOCHS = 100
 STEPS = 1000
 BATCH_SIZE = 128
-LEARNING_RATE_ACTOR = 0.0003
+LEARNING_RATE_ACTOR = 0.0001
 LEARNING_RATE_CRITIC = 0.001
-K_EPOCHS = 80 # update policy for K epochs in one PPO update
-GAMMA = 0.99
+K_EPOCHS = 80  # update policy for K epochs in one PPO update
+GAMMA = 0.80
 TAU = 0.005
-EPS_CLIP = 0.2 # clip parameter for PPO
+EPS_CLIP = 0.2  # clip parameter for PPO
 ACTION_STD = 0.6
 HAS_CONTINUOUS_ACTION_SPACE = False
 PRINT_EVERY = 100
@@ -48,6 +48,8 @@ SAVE_EVERY = 10000
 """
 Epsilon-greedy action selection.
 """
+
+
 def select_action(agent: PPO, state: State, steps_done: int, verbose: bool = True):
 
     agent_id = AGENTS[steps_done % 2]
@@ -118,7 +120,7 @@ async def train(env: GymEnv, agent: PPO):
     ax.set_xlabel('Epoch')
     ax.set_ylabel('Cumulative reward')
     ax.xaxis.set_ticks(epochs)
-    plt.savefig("agent_ppo_rewards.png")
+    plt.savefig("agent_vlad_rewards.png")
 
 
 async def main():
@@ -171,7 +173,7 @@ async def main():
 
     print("============================================================================================")
     print("Saving agent")
-    ppo_agent.save()
+    ppo_agent.save("vlad.pt")
     ppo_agent.show()
     print("============================================================================================")
     

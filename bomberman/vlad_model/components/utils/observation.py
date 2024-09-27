@@ -41,23 +41,6 @@ def get_nearest_active_bomb(observation: Observation, unit_id: str):
     return nearest_bomb
 
 
-def get_nearest_active_fire_or_blast(observation: Observation, unit_id: str):
-    unit = observation["unit_state"][unit_id]
-    unit_coords = unit['coordinates']
-
-    entities = observation["entities"]
-    fires = list(filter(lambda entity: entity.get("type") == "x", entities))
-
-    min_distance, nearest_fire = +math.inf, None
-    for fire in fires:
-        fire_coords = [fire['x'], fire['y']]
-        fire_distance = manhattan_distance(unit_coords, fire_coords)
-        if fire_distance < min_distance:
-            min_distance = fire_distance
-            nearest_fire = fire
-
-    return nearest_fire
-
 """
 Bomb definition: 
     {'created': 74, 'x': 11, 'y': 10, 'type': 'b', 'unit_id': 'd', 'agent_id': 'b', 'expires': 104, 'hp': 1, 'blast_diameter': 3}

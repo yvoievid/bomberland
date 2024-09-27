@@ -10,13 +10,76 @@ from components.utils.metrics import manhattan_distance
 
 from components.utils.observation import get_nearest_active_fire_or_blast
 
+REWARDS = {
+    "get_damage": -5,
+    "get_killed": -5,
+    "get_all_killed": -10,
+    "within_reach_of_bomb": -5,
+    "in_safe_cell": 5,
+    "distance_to_center": lambda distance: 2 / (distance ** 2),
+    "moved_closer": 1
+}
+def distance_to_center_reward(observation: Observation, current_unit_id: str):
+    coord = observation['unit_state'][current_unit_id]['coordinates']
+    distance = manhattan_distance((7, 7), coord)
+    distance = max(distance, 1)
+    return REWARDS["distance_to_center"](distance)
+
+
+# Assuming there's a global variable or an external way to store visited squares
+# Initialize this somewhere in your game initialization code
+visited_rings = {}
+
+
+def calculate_ring(coordinates):
+    center = (7, 7)
+    distance = manhattan_distance(center, coordinates)
+    ring = 8 - distance
+    return max(ring, 0)
+
+
+def moved_to_center(prev_obs: Observation, new_obs: Observation, current_unit_id: str):
+    global visited_rings
+
+    if current_unit_id not in visited_rings:
+        visited_rings[current_unit_id] = set()
+
+    prev_coord = prev_obs['unit_state'][current_unit_id]['coordinates']
+    new_coord = new_obs['unit_state'][current_unit_id]['coordinates']
+
+    old_ring = calculate_ring(prev_coord)
+    new_ring = calculate_ring(new_coord)
+
+    # Check if the move is towards the center and the square hasn't been visited before
+    if new_ring > old_ring and new_ring not in visited_rings[current_unit_id]:
+        visited_rings[current_unit_id].add(new_ring)  # Mark this square as visited
+        return REWARDS["moved_closer"]
+    return 0
+
+
 def find_my_units_alive(observation: Observation, current_agent_id: str) -> int:
     alive = 0
     for unit_props in observation['unit_state'].values():
         if unit_props['agent_id'] == current_agent_id:
             if unit_props['hp'] != 0:
+
                 alive += 1
     return alive
+
+
+def unit_within_fire_cell(observation, current_unit_id):
+    unit = observation['unit_state'][current_unit_id]
+    unit_coords = unit['coordinates']
+    print(type(unit_coords))
+    print(unit_coords)
+    nearest_fire = get_nearest_active_fire_or_blast(observation, current_unit_id)
+    print(type(nearest_fire))
+    print(nearest_fire)
+    if nearest_fire is None:
+        return False
+    else:
+        return unit_coords[0] == int(nearest_fire['x']) and unit_coords[1] == int(nearest_fire['y'])
+
 
 def find_enemy_units_alive(observation: Observation, current_agent_id: str) -> int:
     alive = 0
@@ -59,15 +122,6 @@ def unit_within_reach_of_a_bomb(observation: Observation, current_unit_id: str):
     return within_reach_of_a_bomb
 
 
-def unit_within_fire_cell(observation: Observation, current_unit_id: str):
-    unit = observation['unit_state'][current_unit_id]
-    unit_coords = unit['coordinates']
-    nearest_fire = get_nearest_active_fire_or_blast(observation, current_unit_id)
-    if nearest_fire is None or unit_coords['x'] != nearest_fire['x'] or unit_coords['y'] != nearest_fire['y']:
-        return False
-
-    return True
-
 def unit_within_safe_cell_nearby_bomb(observation: Observation, current_unit_id: str):
     unit = observation['unit_state'][current_unit_id]
     unit_coords = unit['coordinates']
@@ -77,6 +131,7 @@ def unit_within_safe_cell_nearby_bomb(observation: Observation, current_unit_id:
     nearest_bomb_coords = [nearest_bomb['x'], nearest_bomb['y']]
     within_safe_cell_nearby_bomb = manhattan_distance(unit_coords, nearest_bomb_coords) > nearest_bomb['blast_diameter']
     return within_safe_cell_nearby_bomb
+
 
 """
 Bomb definition: {'created': 74, 'x': 11, 'y': 10, 'type': 'b', 'unit_id': 'd', 'agent_id': 'b', 'expires': 104, 'hp': 1, 'blast_diameter': 3}
@@ -112,22 +167,22 @@ Reward function definition:
 def calculate_reward(prev_observation: Observation, next_observation: Observation, current_agent_id: str, current_unit_id: str):
     reward = 0        
 
-    # 1. +2: when dealing 1 hp for 1 enemy
+    # 1. +0.5: when dealing 1 hp for 1 enemy
 
     prev_enemy_units_hps = find_enemy_units_hps(prev_observation, current_agent_id)
     next_enemy_units_hps = find_enemy_units_hps(next_observation, current_agent_id)
     
     enemy_units_hps_diff = prev_enemy_units_hps - next_enemy_units_hps
     if enemy_units_hps_diff > 0:
-        reward += (enemy_units_hps_diff * 2)
+        reward += (enemy_units_hps_diff * 0.7)
 
-    # 2. +3: when killing opponent
+    # 2. +1: when killing opponent
 
     prev_enemy_units_alive = find_enemy_units_alive(prev_observation, current_agent_id)
     next_enemy_units_alive = find_enemy_units_alive(next_observation, current_agent_id)
 
     if prev_enemy_units_alive > next_enemy_units_alive:
-        reward += 3
+        reward += 1
 
     # 3. +1: when killing all 3 opponents
 
@@ -160,15 +215,13 @@ def calculate_reward(prev_observation: Observation, next_observation: Observatio
 
     reward += (-0.01)
 
-    # 8. -0.000666: the agent is in a cell within reach of a bomb
+    # 8. -10: the agent is in a cell within reach of a bomb
 
-    prev_unit_within_fire_cell = unit_within_fire_cell(prev_observation, current_unit_id)
-    next_unit_within_fire_cell = unit_within_fire_cell(next_observation, current_unit_id)
     prev_within_reach_of_a_bomb = unit_within_reach_of_a_bomb(prev_observation, current_unit_id)
     next_within_reach_of_a_bomb = unit_within_reach_of_a_bomb(next_observation, current_unit_id)
 
     if not prev_within_reach_of_a_bomb and next_within_reach_of_a_bomb:
-        reward += (-0.2)
+        reward += (-1.2)
 
     # 9. +0.002: the agent is in a safe cell when there is an active bomb nearby
 
@@ -176,7 +229,7 @@ def calculate_reward(prev_observation: Observation, next_observation: Observatio
     next_within_safe_cell_nearby_bomb = unit_within_safe_cell_nearby_bomb(next_observation, current_unit_id)
 
     if not prev_within_safe_cell_nearby_bomb and next_within_safe_cell_nearby_bomb:
-        reward += 0.002
+        reward += 1.2
 
     # 10. +0.1: the unit activated bomb near an obstacle
 
@@ -186,8 +239,14 @@ def calculate_reward(prev_observation: Observation, next_observation: Observatio
     if not prev_activated_bomb_near_an_obstacle and next_activated_bomb_near_an_obstacle:
         reward += 0.1
 
-    # -1: the agent is in the cell with fire
+    prev_unit_within_fire_cell = unit_within_fire_cell(prev_observation, current_unit_id)
+    next_unit_within_fire_cell = unit_within_fire_cell(next_observation, current_unit_id)
+
     if prev_unit_within_fire_cell and not next_unit_within_fire_cell:
-        reward += 0.6
+        reward += 1
+
+    reward += distance_to_center_reward(next_observation, current_unit_id)
+    reward += moved_to_center(prev_observation, next_observation, current_unit_id)
 
     return torch.tensor(reward, dtype=torch.float32).reshape(1)
+

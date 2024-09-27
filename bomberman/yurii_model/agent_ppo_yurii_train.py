@@ -3,18 +3,20 @@ import datetime
 import time
 import matplotlib.pyplot as plt
 
+
 from components.environment.config import (
     FWD_MODEL_CONNECTION_DELAY,
     FWD_MODEL_CONNECTION_RETRIES, 
     FWD_MODEL_URI,  
 )
+
 from components.environment.gym import Gym, GymEnv
-from components.environment.mocks import MOCK_15x15_INITIAL_OBSERVATION
+from components.environment.mocks import MOCK_15x15_INITIAL_OBSERVATION, TEN_RANDOM_MOCK_15x15_INITIAL_OBSERVATIONS
 from components.models.ppo import PPO
 from components.action import make_action
 from components.reward import calculate_reward
 from components.state import (
-    action_dimensions, 
+    action_dimensions,
     state_dimensions, 
     observation_to_state
 )
@@ -30,13 +32,13 @@ UNITS = ["c", "d", "e", "f", "g", "h"]
 Hyperparameters
 """
 
-EPOCHS = 100
+EPOCHS = 60
 STEPS = 1000
 BATCH_SIZE = 128
-LEARNING_RATE_ACTOR = 0.0003
-LEARNING_RATE_CRITIC = 0.001
+LEARNING_RATE_ACTOR = 0.0001
+LEARNING_RATE_CRITIC = 0.003
 K_EPOCHS = 80 # update policy for K epochs in one PPO update
-GAMMA = 0.99
+GAMMA = 0.80
 TAU = 0.005
 EPS_CLIP = 0.2 # clip parameter for PPO
 ACTION_STD = 0.6
@@ -44,6 +46,7 @@ HAS_CONTINUOUS_ACTION_SPACE = False
 PRINT_EVERY = 100
 UPDATE_EVERY = 100
 SAVE_EVERY = 10000
+SEEDS = [123,12]
 
 """
 Epsilon-greedy action selection.
@@ -64,6 +67,8 @@ def select_action(agent: PPO, state: State, steps_done: int, verbose: bool = Tru
 async def train(env: GymEnv, agent: PPO):
     cumulative_rewards = []
 
+    # for seed in SEEDS:
+        
     for epoch in range(EPOCHS):
         print(f"Started {epoch} epoch...")
         cumulative_reward = 0
@@ -118,7 +123,7 @@ async def train(env: GymEnv, agent: PPO):
     ax.set_xlabel('Epoch')
     ax.set_ylabel('Cumulative reward')
     ax.xaxis.set_ticks(epochs)
-    plt.savefig("agent_ppo_rewards.png")
+    plt.savefig("agent_ppo_yurii_rewards.png")
 
 
 async def main():
@@ -139,12 +144,10 @@ async def main():
 
     print("============================================================================================")
     print("Initializing agent")
-    env = gym.make("bomberland-gym", MOCK_15x15_INITIAL_OBSERVATION)
-    observation = await env.reset()
-    n_states = state_dimensions(observation)
+    
+    n_states = state_dimensions(MOCK_15x15_INITIAL_OBSERVATION)
     n_actions = action_dimensions()
-    print(f"Agent: states = {n_states}, actions = {n_actions}")
-
+    
     ppo_agent = PPO(
         n_states, 
         n_actions, 
@@ -156,18 +159,25 @@ async def main():
         HAS_CONTINUOUS_ACTION_SPACE, 
         ACTION_STD
     )
-    print("============================================================================================")
+        
+    for index, observation  in enumerate(TEN_RANDOM_MOCK_15x15_INITIAL_OBSERVATIONS):
+        env = gym.make("bomberland-gym-"+str(index), observation)
+        observation = await env.reset()
+        # n_states = state_dimensions(observation)
+        # n_actions = action_dimensions()
+        # print(f"Agent: states = {n_states}, actions = {n_actions}")
+        print("============================================================================================")
 
-    print("============================================================================================")
-    print("Training agent")
-    start_time = datetime.datetime.now().replace(microsecond=0)
-    print("Started training at (GMT) : ", start_time)
-    await train(env, ppo_agent)
-    end_time = datetime.datetime.now().replace(microsecond=0)
-    print("Started training at (GMT) : ", start_time)
-    print("Finished training at (GMT) : ", end_time)
-    print("Total training time  : ", end_time - start_time)
-    print("============================================================================================")
+        print("============================================================================================")
+        print("Training agent")
+        start_time = datetime.datetime.now().replace(microsecond=0)
+        print("Started training at (GMT) : ", start_time)
+        await train(env, ppo_agent)
+        end_time = datetime.datetime.now().replace(microsecond=0)
+        print("Started training at (GMT) : ", start_time)
+        print("Finished training at (GMT) : ", end_time)
+        print("Total training time  : ", end_time - start_time)
+        print("============================================================================================")
 
     print("============================================================================================")
     print("Saving agent")

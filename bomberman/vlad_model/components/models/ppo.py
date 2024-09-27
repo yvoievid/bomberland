@@ -8,7 +8,7 @@ from torch.distributions import Categorical
 
 from components.utils.device import device
 
-PPO_AGENT_PATH = "agent_ppo.pt"
+PPO_AGENT_PATH = "agent_ppo_vlad.pt"
 
 class RolloutBuffer:
     def __init__(self):
